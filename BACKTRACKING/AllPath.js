@@ -1,30 +1,29 @@
-function AllPath(Maze,r,c,rowSize,colSize,res){
-    
-    if(Maze[r][c] == false){
-        return;
+function AllPath(Maze, r, c, rowSize, colSize, res) {
+    if (r === rowSize && c === colSize) {
+      console.log(res);
+      return;
     }
-    if(r==2 && c==2){
-        console.log(res);
-        return
+    if (!Maze[r][c]) {
+      return;
     }
-    Maze[r][c]=false;
-    if(r<rowSize && Maze[r+1][c]!=false){
-       
-       AllPath(Maze,r+1,c,rowSize,colSize,res+'D ');
+  
+    Maze[r][c] = false;
+  
+    if (r < rowSize) {
+      AllPath(Maze, r + 1, c, rowSize, colSize, res + 'D ');
     }
-    if(c<colSize && Maze[r][c+1]!=false){
-    
-       AllPath(Maze,r,c+1,rowSize,colSize,res+'R ');
+    if (c < colSize) {
+      AllPath(Maze, r, c + 1, rowSize, colSize, res + 'R ');
     }
-    if(r>0 && Maze[r-1][c]!=false){
-        
-       AllPath(Maze,r-1,c,rowSize,colSize,res+'L ')
+    if (r > 0) {
+      AllPath(Maze, r - 1, c, rowSize, colSize, res + 'U ');
     }
-    if(c>0 && Maze[r][c-1]!=false){
-        
-       AllPath(Maze,r,c-1,rowSize,colSize,res+'U ');
+    if (c > 0) {
+      AllPath(Maze, r, c - 1, rowSize, colSize, res + 'L ');
     }
-    Maze[r][c]=true
-    return
-};
-AllPath([[1,1,1],[1,1,1],[1,1,1]],0,0,2,2,'');
+  
+    Maze[r][c] = true;
+  }
+  
+  let maze = [[true, true, true], [true, true, true], [true, true, true]];
+  AllPath(maze, 0, 0, maze.length - 1, maze[0].length - 1, '');
