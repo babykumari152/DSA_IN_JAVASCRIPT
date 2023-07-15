@@ -3,6 +3,7 @@ function Sort(Array,start,end){
         return
     }
     let piviot = Partioning(Array,start,end);
+    console.log(piviot)
     Sort(Array,piviot - 1);
     Sort(Array, piviot + 1, end);
 
@@ -17,6 +18,7 @@ function Partioning(Array,start,end){
     }
     let left = start;
     let right = end;
+    console.log(countOfLessPiviot,piviot);
     while(left < countOfLessPiviot+start && right > countOfLessPiviot+start){
         if(Array[left] > piviot && Array[right] < piviot ){
             let temp = Array[left];
@@ -25,10 +27,10 @@ function Partioning(Array,start,end){
             left = left + 1;
             right = right - 1;
         }
-        else if(Array[left] < piviot){
+        else if(Array[left] <= piviot){
             left = left + 1;
         }
-        else if(Array[right] > piviot){
+        else if(Array[right] >= piviot){
             right = right - 1;
         }
     }
