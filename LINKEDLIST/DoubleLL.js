@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body><script>class Node{
+class Node{
     constructor(data){
         this.data = data;
         this.next = null;
@@ -72,7 +65,7 @@ class DoublyLinkedList{
     }
     deleteAtIndex(index){
         if(index==0){
-            let current = this.head;
+            current = this.head;
             this.head=current.next;
             if(current && current.next)
               current.next.prev = this.head;            
@@ -84,9 +77,9 @@ class DoublyLinkedList{
                 current = current.next;
                 cIndex = cIndex +1;
             }
-//let prevNode = current.prev;
-            current.prev.next = current.next;
-            current.next.prev = current.next;
+            let prevNode = current.prev;
+            prevNode.next = current.next;
+            current.next.prev = prevNode;
         }
     }
 }
@@ -94,13 +87,4 @@ var dll = new DoublyLinkedList();
 dll.Push(6);
 dll.Push(7);
 dll.Append(3);
-dll.Append(5);
-//dll.insertAtIndex(1,8);
-dll.deleteAtIndex(1);
-console.log(dll);
 dll.print();
-
-</script>
-    
-</body>
-</html>
