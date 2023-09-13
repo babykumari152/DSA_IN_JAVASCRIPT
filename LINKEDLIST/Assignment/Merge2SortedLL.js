@@ -10,13 +10,18 @@ class LL{
         this.head = null;
         this.tail = null;
         if(lists){
+           
          for(let i=0; i< lists.length; i++){
            if(!this.head){
-            this.head = this.tail = new Node(lists[i]);
+            this.head = new Node(lists[i]);
            }
            else{
-            this.tail.next = new Node(lists[i]);
-            this.tail = new Node(lists[i]);
+            let current = this.head;
+            while(current.next){
+                current =current.next;
+            }
+            current.next = new Node(lists[i]);
+            
             
            }
 
@@ -27,9 +32,10 @@ class LL{
      insertLL(data){
         var node = new Node(data);
         if(!this.head){
-            this.head = this.tail = data;
+            this.head  = data;
         }
         else{
+            
             this.tail.next = node;
             this.tail=node;
         }
@@ -52,7 +58,7 @@ console.log(listA);
 function merge2SortedLL(A,B){
     let AHead = A.head;
     let BHead = B.head;
-    while(AHead && BHead){
+    while(AHead.next && BHead.next){
         if(AHead.data > BHead.data){
             let temp = BHead;
             BHead.next=AHead;
@@ -71,4 +77,4 @@ function merge2SortedLL(A,B){
 
     A.print();
 }
-merge2SortedLL(listA,listB,listC);
+merge2SortedLL(listA,listB);

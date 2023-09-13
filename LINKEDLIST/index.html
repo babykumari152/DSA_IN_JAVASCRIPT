@@ -4,101 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./Assignment/Merge2SortedLL.js"></script>
 </head>
-<body><script>class Node{
-    constructor(data){
-        this.data = data;
-        this.next = null;
-        this.prev = null;
-    }
-}
+<body><script>
 
-class DoublyLinkedList{
-    constructor(node){
-        this.head = node;
-        this.size = 0;
-    }
-    Append(data){
-        let node = new Node(data);
-        let current = this.head;
-        if(current){
-          while(current.next){
-            current = current.next;
-          }
-          current.next = node;
-          node.prev=current;
-        }
-        else{
-            this.head = node;
-            node.prev = head;
-        }
-        this.size = this.size + 1;
-    }
-    Push(data){
-        let node = new Node(data);
-        let current = this.head;
-        node.next=current;
-        this.head = node;
-        node.prev=this.head;
-        this.size = this.size +1;
-    }
-    print(){
-        let current = this.head;
-        while(current){
-            console.log(current.data);
-            current=current.next;
-        }
-    }
-    insertAtIndex(index,data){
-      let cIndex = 0;
-      let node = new Node(data);
-      let current = this.head;
-      while(cIndex<index){
-          current = current.next;
-          cIndex = cIndex +1;
-      }
-      node.prev=current.prev;
-      current.prev = node;
-      node.next = current;
-    }
-    Pop(){
-        let current = this.head;
-        while(current.next){
-            current = current.next;
-        }
-        let prevNode = current.prev;
-        prevNode.next = null;
-        current.prev = null;
-    }
-    deleteAtIndex(index){
-        if(index==0){
-            let current = this.head;
-            this.head=current.next;
-            if(current && current.next)
-              current.next.prev = this.head;            
-        }
-        else{
-            let cIndex = 0;
-            let current = this.head;
-            while(cIndex<index){
-                current = current.next;
-                cIndex = cIndex +1;
-            }
-//let prevNode = current.prev;
-            current.prev.next = current.next;
-            current.next.prev = current.next;
-        }
-    }
-}
-var dll = new DoublyLinkedList();
-dll.Push(6);
-dll.Push(7);
-dll.Append(3);
-dll.Append(5);
-//dll.insertAtIndex(1,8);
-dll.deleteAtIndex(1);
-console.log(dll);
-dll.print();
 
 </script>
     
