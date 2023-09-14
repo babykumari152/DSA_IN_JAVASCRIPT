@@ -50,31 +50,38 @@ class LL{
 
 }
 
-let listA = new LL([2,6,8]);
-let listB = new LL([5,7,9]);
+let listA = new LL([2,6,8,12,15]);
+let listB = new LL([5,7,14]);
 
 console.log(listA);
 
 function merge2SortedLL(A,B){
     let AHead = A.head;
     let BHead = B.head;
-    while(AHead.next && BHead.next){
+    let Aprev=null;
+    while(AHead && BHead){
         if(AHead.data > BHead.data){
-            let temp = BHead;
-            BHead.next=AHead;
-           AHead = BHead;
+            let temp = JSON.parse(JSON.stringify(BHead));
+            temp.next=AHead;
+           if(!Aprev) 
+             AHead = temp;
+           else
+             Aprev.next = temp; 
+           Aprev = Aprev.next; 
            BHead = BHead.next;
+           AHead = Aprev;
 
         }
         else{
+          Aprev = AHead;  
           AHead = AHead.next;
         }
     }
     
     if(BHead)
-      AHead.next = BHead;
+      Aprev.next = BHead;
     
 
-    A.print();
+    console.log(A);
 }
 merge2SortedLL(listA,listB);
